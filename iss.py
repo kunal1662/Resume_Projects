@@ -3,10 +3,10 @@ from datetime import datetime
 import smtplib
 import time
 
-MY_lat =19.075983
-MY_lng=72.877655
-MY_email = "1234@gmail.com"
-MY_password = "1234_iitb"
+MY_lat = YOUR_LATITUDE
+MY_lng = YOUR_LONGITUDE
+MY_email = "YOUR_EMAIL_ID"
+MY_password = "YOUR_PASSWORD"
 
 def is_iss_overhead():
     response = requests.get(url="http://api.open-notify.org/iss-now.json")
@@ -36,14 +36,14 @@ def is_night():
     if time_now<= sunrise or time_now>= sunset:
         return True
 
-# while True:
-#     time.sleep(60)
-#     if is_iss_overhead() and is_night():
-#         connection = smtplib.SMTP("smtp.gmail.com")
-#         connection.starttls()
-#         connection.login(MY_email, MY_password)
-#         connection.sendmail(
-#             from_addr=MY_email,
-#             to_addrs=MY_email,
-#             msg="Subject:Look UP \n\n The ISS is above you in the sky."
-#         )
+while True:
+    time.sleep(60)
+    if is_iss_overhead() and is_night():
+        connection = smtplib.SMTP("smtp.gmail.com")
+        connection.starttls()
+        connection.login(MY_email, MY_password)
+        connection.sendmail(
+            from_addr=MY_email,
+            to_addrs=MY_email,
+            msg="Subject:Look UP \n\n The ISS is above you in the sky."
+        )
